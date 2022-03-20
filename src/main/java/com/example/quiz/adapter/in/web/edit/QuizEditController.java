@@ -42,6 +42,7 @@ public class QuizEditController {
     @GetMapping("/add-question")
     public String showAddQuestion(Model model) {
         model.addAttribute("addQuestionForm", new AddQuestionForm());
+        model.addAttribute("message", "Hello World!");
         return "add-question";
     }
 

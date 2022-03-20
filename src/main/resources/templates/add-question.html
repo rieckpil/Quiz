@@ -107,6 +107,10 @@
 
     </form>
     <script th:inline="javascript">
+
+        var message = [[${message}]];
+        alert(message);
+
         var converter = new showdown.Converter();
 
         var textareaElement = document.getElementById("question-text");
