@@ -58,7 +58,7 @@
                 Question Text
                 <p th:if="${#fields.hasErrors('text')}" th:errors="*{text}"></p>
             </label>
-            <div class="flex">
+            <div class="flex" th:data-teamplayers-count="8">
                 <div class="w-1/2 mr-4">
                  <textarea type="text" id="question-text" th:field="*{text}" rows="10" cols="30"
                            class="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
@@ -69,38 +69,9 @@
                 </div>
             </div>
 
-            <input type="checkbox" th:field="*{choice1.correctAnswer}"/>
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Choice #1
-                <p th:if="${#fields.hasErrors('choice1.choice')}" th:errors="*{choice1.choice}"></p>
-            </label>
-            <input type="text" th:field="*{choice1.choice}"
-                   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
-
-            <input type="checkbox" th:field="*{choice2.correctAnswer}"/>
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Choice #2
-                <p th:if="${#fields.hasErrors('choice2.choice')}" th:errors="*{choice2.choice}"></p>
-            </label>
-            <input type="text" th:field="*{choice2.choice}"
-                   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
-
-            <input type="checkbox" th:field="*{choice3.correctAnswer}"/>
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Choice #3
-                <p th:if="${#fields.hasErrors('choice3.choice')}" th:errors="*{choice3.choice}"></p>
-            </label>
-            <input type="text" th:field="*{choice3.choice}"
-                   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
-
-            <input type="checkbox" th:field="*{choice4.correctAnswer}"/>
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Choice #4
-                <p th:if="${#fields.hasErrors('choice4.choice')}" th:errors="*{choice4.choice}"></p>
-            </label>
-            <input type="text" th:field="*{choice4.choice}"
-                   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
-
+            <div th:each="choice, stat : *{choices}">
+                <div th:replace="fragments/form-fragments :: choice-input(*{choices[__${stat.index}__].choice}, *{choices[__${stat.index}__].correctAnswer}, ${#fields.hasErrors('choices[__${stat.index}__].choice')}, *{choices[__${stat.index}__].choice}, ${stat.count})"></div>
+            </div>
             <div class="flex justify-end mb-3">
                 <div>
                     <button type="button"
@@ -133,6 +104,24 @@
         addNewChoiceButton.addEventListener("click", function (event) {
             console.log(event)
         });
+
+        function addExtraTeamPlayerForm() {
+            const questionChoiceForm = document.getElementById('question-choice-form');
+            const count = questionChoiceForm.getAttribute('data-choice-count');
+
+            fetch(`/teams/edit-teamplayer-fragment?index=${count}`)
+                    .then(response => response.text()).then(fragment => {
+                questionChoiceForm.appendChild(htmlToElement(fragment));
+                questionChoiceForm.setAttribute('data-choice-count', parseInt(count) + 1);
+            });
+        }
+
+        function htmlToElement(html) {
+            const template = document.createElement('template');
+            html = html.trim();
+            template.innerHTML = html;
+            return template.content.firstChild;
+        }
     </script>
 </div>
 </body>

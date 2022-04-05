@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -43,6 +44,12 @@ public class QuizEditController {
     public String showAddQuestion(Model model) {
         model.addAttribute("addQuestionForm", new AddQuestionForm());
         return "add-question";
+    }
+
+    @GetMapping("/add-question-form-fragment")
+    public String getEditTeamPlayerFragment(Model model, @RequestParam("index") int index) {
+        model.addAttribute("index", index);
+        return "teams/edit-teamplayer-fragment :: teamplayer-form";
     }
 
     @GetMapping("/view-questions")

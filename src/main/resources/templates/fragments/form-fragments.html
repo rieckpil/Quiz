@@ -1,0 +1,14 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<div th:fragment="choice-input(choiceTextField, correctAnswerField, hasErrors, errors, index)"
+     class="col-span-6 flex items-stretch">
+    <input type="checkbox" th:checked="${correctAnswerField}"/>
+    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+        Choice #[[ ${index} ]]
+        <p th:if="${hasErrors}" th:errors="${errors}"></p>
+    </label>
+    <input type="text" th:value="${choiceTextField}"
+           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+</div>
+</html>
