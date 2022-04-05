@@ -24,7 +24,10 @@ public class QuizEditController {
 
     @PostMapping("/add-question")
     public String addQuestion(@Valid AddQuestionForm addQuestionForm, BindingResult bindingResult) {
+        System.out.println(addQuestionForm);
+
         if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult);
             return "add-question";
         }
         try {

@@ -1,7 +1,9 @@
 package com.example.quiz.adapter.in.web.edit;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -14,14 +16,14 @@ public class AddQuestionForm {
     private String text;
 
     @NotNull
-    private ChoiceForm[] choices;
+    private @Valid ChoiceForm[] choices;
 
     @NotBlank
     private String choiceType;
 
     public AddQuestionForm() {
         this.choices = new ChoiceForm[]{
-                new ChoiceForm("bac", true), new ChoiceForm(), new ChoiceForm(), new ChoiceForm()
+                new ChoiceForm(), new ChoiceForm(), new ChoiceForm(), new ChoiceForm()
         };
     }
 
@@ -30,7 +32,7 @@ public class AddQuestionForm {
         this.text = text;
         this.choiceType = choiceType;
         this.choices = new ChoiceForm[]{
-                new ChoiceForm("bac", true), new ChoiceForm(), new ChoiceForm(), new ChoiceForm()
+                new ChoiceForm(), new ChoiceForm(), new ChoiceForm(), new ChoiceForm()
         };
     }
 
@@ -64,22 +66,6 @@ public class AddQuestionForm {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public void setChoice1(ChoiceForm choice1) {
-        this.choices[0] = choice1;
-    }
-
-    public void setChoice2(ChoiceForm choice2) {
-        this.choices[1] = choice2;
-    }
-
-    public void setChoice3(ChoiceForm choice3) {
-        this.choices[2] = choice3;
-    }
-
-    public void setChoice4(ChoiceForm choice4) {
-        this.choices[3] = choice4;
     }
 
     public String getChoiceType() {
@@ -121,5 +107,14 @@ public class AddQuestionForm {
                                             .map(ChoiceForm::getChoice)
                                             .toList();
         return correctChoices;
+    }
+
+    @Override
+    public String toString() {
+        return "AddQuestionForm{" +
+                "text='" + text + '\'' +
+                ", choices=" + Arrays.toString(choices) +
+                ", choiceType='" + choiceType + '\'' +
+                '}';
     }
 }
