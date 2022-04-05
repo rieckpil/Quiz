@@ -759,6 +759,10 @@ ol,ul {
   margin-bottom: 0px;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .block {
   display: block;
 }

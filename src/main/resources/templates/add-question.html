@@ -58,7 +58,7 @@
                 Question Text
                 <p class="text-red-700 mt-2" th:if="${#fields.hasErrors('text')}" th:errors="*{text}"></p>
             </label>
-            <div class="flex" th:data-teamplayers-count="8">
+            <div class="flex mt-2">
                 <div class="w-1/2 mr-4">
                  <textarea type="text" id="question-text" th:field="*{text}" rows="10" cols="30"
                            class="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
@@ -76,7 +76,7 @@
                 <div>
                     <button type="button"
                             id="add-new-choice"
-                            class="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded">
+                            class="shadow mt-3 bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded">
                         <i class="fa fa-plus" aria-hidden="true"></i>Add new choice
                     </button>
                 </div>
