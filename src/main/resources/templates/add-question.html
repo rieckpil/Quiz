@@ -5,6 +5,7 @@
     <title>Text Input Form</title>
     <link rel="stylesheet" th:href="@{/css/application.css}" href="../static/css/application.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.0.3/showdown.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="max-w-screen-md mx-auto p-5">
@@ -100,6 +101,15 @@
             <input type="text" th:field="*{choice4.choice}"
                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
 
+            <div class="flex justify-end mb-3">
+                <div>
+                    <button type="button"
+                            id="add-new-choice"
+                            class="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded">
+                        <i class="fa fa-plus" aria-hidden="true"></i>Add new choice
+                    </button>
+                </div>
+            </div>
             <button type="submit"
                     class="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded">
                 Create
@@ -111,11 +121,17 @@
 
         var converter = new showdown.Converter();
         var textAreaElement = document.getElementById("question-text");
-        textAreaElement.addEventListener("input", function(event) {
-           var rawMarkDown = event.target.value;
-           var convertedHtml = converter.makeHtml(rawMarkDown);
-           var previewArea = document.getElementById("question-text-preview");
-           previewArea.innerHTML = convertedHtml;
+        textAreaElement.addEventListener("input", function (event) {
+            var rawMarkDown = event.target.value;
+            var convertedHtml = converter.makeHtml(rawMarkDown);
+            var previewArea = document.getElementById("question-text-preview");
+            previewArea.innerHTML = convertedHtml;
+        });
+
+        var addNewChoiceButton = document.getElementById("add-new-choice");
+
+        addNewChoiceButton.addEventListener("click", function (event) {
+            console.log(event)
         });
     </script>
 </div>
