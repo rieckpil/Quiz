@@ -13,9 +13,10 @@
             Add a <span class="text-indigo-600">Question</span>
         </h3>
     </div>
-    <form action="#" th:data-question-form-count="${addQuestionForm.choices.length}" id="question-form" th:action="@{/add-question}" th:object="${addQuestionForm}" method="post"
+    <form action="#" th:data-question-form-count="${addQuestionForm.choices.length}" id="question-form"
+          th:action="@{/add-question}" th:object="${addQuestionForm}" method="post"
           class="w-full">
-        <div >
+        <div>
             <input type="radio"
                    value="single" id="choice1" name="choiceType" checked="checked"/>
             <label
@@ -118,7 +119,7 @@
         function htmlToElement(html) {
             var template = document.createElement('template');
             html = html.trim();
-            template.innerHTML = "<div>" + html+  "</div>";
+            template.innerHTML = "<div>" + html + "</div>";
             return template.content.firstChild;
         }
     </script>
