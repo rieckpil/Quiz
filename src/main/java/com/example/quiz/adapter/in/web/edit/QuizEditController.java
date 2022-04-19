@@ -50,12 +50,12 @@ public class QuizEditController {
 
     @GetMapping("/add-choice")
     public String addChoice(Model model, @RequestParam("index") int index) {
-        model.addAttribute("index", index + 1);
+        int nextIndex = index + 1;
+        model.addAttribute("index", nextIndex);
         model.addAttribute("hasErrors", false);
-        model.addAttribute("fieldNameChoiceText", "choice");
-        model.addAttribute("fieldNameCorrectAnswer", "correctAnswer");
-        model.addAttribute("correctAnswer", false);
-        model.addAttribute("choice", "");
+        model.addAttribute("fieldNameChoiceText", "dummy.choices[" + index + "].choice");
+        model.addAttribute("fieldNameCorrectAnswer", "dummy.choices[" + index + "].correctAnswer");
+        model.addAttribute("dummy", new DummyQuestionChoices(nextIndex));
         return "fragments/form-fragments :: choice-input";
     }
 
