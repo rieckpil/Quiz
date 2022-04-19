@@ -25,6 +25,7 @@ public class QuestionService {
     }
 
     public Question add(AddQuestionForm addQuestionForm) {
+        // TODO: Needs adjustment
         List<ChoiceForm> choiceForms = Arrays.stream(addQuestionForm.getChoices())
                                              .toList();
         if (addQuestionForm.getChoiceType().equals("single")) {
