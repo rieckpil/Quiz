@@ -104,6 +104,19 @@
             addExtraChoice();
         });
 
+        function deleteChoice(index) {
+            console.log("Delete choice called for index: " + index);
+        }
+
+        var deleteChoiceButtons = document.getElementsByClassName("delete-choice-button");
+
+        for(var i = 0; i < deleteChoiceButtons.length; i++){
+            deleteChoiceButtons[i].addEventListener("click", function (event) {
+                var choiceIndexToDelete = event.target.getAttribute("data-choice-index");
+                console.log("Going to delete choice: " +  choiceIndexToDelete);
+            });
+        }
+
         function addExtraChoice() {
             var questionForm = document.getElementById("question-form");
             var count = questionForm.getAttribute("data-question-form-count");
