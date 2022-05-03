@@ -106,6 +106,14 @@
 
         function deleteChoice(index) {
             console.log("Delete choice called for index: " + index);
+
+            const choiceInputToRemove = document.getElementById('choice-form-input-' +
+                    index);
+            choiceInputToRemove.parentElement.removeChild(choiceInputToRemove);
+
+            var questionForm = document.getElementById("question-form");
+            var count = questionForm.getAttribute("data-question-form-count");
+            questionForm.setAttribute('data-question-form-count', parseInt(count) - 1);
         }
 
         var deleteChoiceButtons = document.getElementsByClassName("delete-choice-button");

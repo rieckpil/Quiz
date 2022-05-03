@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       lang="en">
-<div th:fragment="choice-input(fieldNameChoiceText, fieldNameCorrectAnswer, hasErrors, index)">
+<div th:fragment="choice-input(fieldNameChoiceText, fieldNameCorrectAnswer, hasErrors, index)" th:id="'choice-form-input-' + ${index}">
     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-2">
         Choice #[[ ${index} ]]
     </label>

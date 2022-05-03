@@ -48,7 +48,9 @@ public class QuizEditController {
 
     @GetMapping("/add-question")
     public String showAddQuestion(Model model) {
-        model.addAttribute("addQuestionForm", new AddQuestionForm());
+        AddQuestionForm addQuestionForm = new AddQuestionForm();
+        addQuestionForm.setChoices(new ChoiceForm[]{new ChoiceForm(), new ChoiceForm(), new ChoiceForm()});
+        model.addAttribute("addQuestionForm", addQuestionForm);
         return "add-question";
     }
 
